@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    background-color: black;
+    font-family: 'Orbitron', sans-serif;
+    color: #ffcc33;
+}
+
+.layout-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 150px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.left-menu {
+    background-color: #663399;
+}
+
+.right-menu {
+    background-color: #3366cc;
+}
+
+.main-content {
+    flex: 1;
+    overflow: auto;
+    background-color: #111;
+    padding: 20px;
+    border-left: 2px solid #ffcc33;
+    border-right: 2px solid #ffcc33;
+}
