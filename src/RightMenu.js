@@ -1,4 +1,5 @@
 import React from 'react';
+import LogEntryForm from "./LogEntryForm";
 
 const RightMenu = ({ onActivitySelect, onWorkoutSelect, activityType }) => {
     const workouts = ['Run', 'Swim', 'Cycle'];
@@ -19,6 +20,7 @@ const RightMenu = ({ onActivitySelect, onWorkoutSelect, activityType }) => {
                             {w}
                         </button>
                     ))}
+                    <LogEntryForm type={activityType} />
                 </>
             )}
         </div>
