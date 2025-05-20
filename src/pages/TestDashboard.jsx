@@ -16,26 +16,22 @@ export default function TestDashboard() {
     return (
         <CContainer fluid className="mt-4">
             <CRow>
-                <CCol md={3} className="d-flex flex-column gap-4">
+                <CCol md={4} className="d-flex flex-column gap-4">
                     <TodaySummaryCard activity="pushups" />
-                    <TodaySummaryCard activity="situps" />
-                </CCol>
-
-                <CCol md={6} className="d-flex flex-column gap-4">
                     <TimeSeriesChartWithControls activity="pushups" refreshKey={refreshKey} />
-                    <TimeSeriesChartWithControls activity="situps" refreshKey={refreshKey} />
-                </CCol>
-
-                <CCol md={3} className="d-flex flex-column gap-4">
                     <EntryTable activity="pushups" />
+                </CCol>
+                <CCol md={4} className="d-flex flex-column gap-4">
+                    <TodaySummaryCard activity="situps" />
+                    <TimeSeriesChartWithControls activity="situps" refreshKey={refreshKey} />
                     <EntryTable activity="situps" />
+                </CCol>
+                <CCol md={4}>
+                    <QuickEntryWidget onLogSuccess={handleRefresh} />
                 </CCol>
             </CRow>
 
             <CRow className="mt-4">
-                <CCol md={4}>
-                    <QuickEntryWidget onLogSuccess={handleRefresh} />
-                </CCol>
                 {/* Future widgets can go here */}
             </CRow>
         </CContainer>
