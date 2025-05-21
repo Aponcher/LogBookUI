@@ -1,29 +1,44 @@
-import ExerciseEntryWidget from '../components/ExerciseEntryWidget';
+import React, {useState} from 'react';
+import {CCol, CContainer, CRow} from '@coreui/react';
+import QuickEntryWidget from '../components/QuickEntryWidget';
+import TodaySummaryCard from '../components/TodaySummaryCard';
+import EntryTable from '../components/EntryTable';
+import TimeSeriesChartWithControls from "../components/TimeSeriesChartWithControls";
 
 export default function Dashboard() {
+    const [refreshKey, setRefreshKey] = useState(0);
+
+    const handleRefresh = () => {
+        // simple inc to force refresh
+        setRefreshKey(prev => prev + 1);
+    };
+
+    const readyActivities = ['pushups', 'situps'];
+
     return (
-        <div className="min-h-screen bg-black text-white px-6 py-8">
-            <h1 className="text-3xl font-bold mb-6 border-b border-gray-700 pb-2">Personal Log Dashboard</h1>
+        <CContainer fluid className="mt-4">
+            {readyActivities.map((activity) => (
+                <CRow>
+                    <CCol md={3}>
+                        <TodaySummaryCard activity={activity} refreshKey={refreshKey}  />
+                        <QuickEntryWidget activity={activity} onLogSuccess={handleRefresh} />
+                    </CCol>
+                    <CCol md={6}>
+                        <TimeSeriesChartWithControls activity={activity} refreshKey={refreshKey} />
+                    </CCol>
+                    <CCol md={3}>
+                        <EntryTable activity={activity} refreshKey={refreshKey}  />
+                    </CCol>
+                </CRow>
+            ))}
+            <CRow>
+                <CCol md={12}>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <ExerciseEntryWidget />
-
-                {/* Placeholder widgets for future expansion */}
-                <div className="bg-gray-800 p-4 rounded-xl shadow-md">
-                    <h2 className="text-xl font-semibold mb-2 border-b border-gray-600 pb-1">Personal Log</h2>
-                    <p className="text-gray-400 text-sm">Free-form entry widget goes here</p>
-                </div>
-
-                <div className="bg-gray-800 p-4 rounded-xl shadow-md">
-                    <h2 className="text-xl font-semibold mb-2 border-b border-gray-600 pb-1">Health Score</h2>
-                    <p className="text-gray-400 text-sm">Health data or score display</p>
-                </div>
-
-                <div className="bg-gray-800 p-4 rounded-xl shadow-md">
-                    <h2 className="text-xl font-semibold mb-2 border-b border-gray-600 pb-1">Weather</h2>
-                    <p className="text-gray-400 text-sm">Weather widget placeholder</p>
-                </div>
-            </div>
-        </div>
+                </CCol>
+            </CRow>
+            <CRow>
+                {/* Future widgets can go here */}
+            </CRow>
+        </CContainer>
     );
 }
