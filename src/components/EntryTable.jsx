@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     CCard,
-    CCardHeader,
     CCardBody,
-    CFormSelect,
+    CCardHeader,
+    CSpinner,
     CTable,
     CTableBody,
+    CTableDataCell,
     CTableHead,
     CTableHeaderCell,
-    CTableRow,
-    CTableDataCell,
-    CSpinner
+    CTableRow
 } from '@coreui/react';
 
 const activityOptions = ['pushups', 'situps', 'squats'];
@@ -61,7 +60,7 @@ export default function EntryTab({activity, refreshKey}) {
                 {loading ? (
                     <CSpinner />
                 ) : (
-                    <CTable striped hover responsive>
+                    <CTable color="dark" striped hover responsive>
                         <CTableHead>
                             <CTableRow>
                                 <CTableHeaderCell scope="col">Timestamp</CTableHeaderCell>
