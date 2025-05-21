@@ -12,6 +12,8 @@ import {
 } from '@coreui/react';
 import axios from 'axios';
 
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
 const QuickEntryWidget = ({ activity, onLogSuccess }) => {
     const [type, setType] = useState(activity);
     const [quantity, setQuantity] = useState(10);
@@ -20,7 +22,7 @@ const QuickEntryWidget = ({ activity, onLogSuccess }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`http://logbook-alb-1951812183.us-east-2.elb.amazonaws.com/log/${type}?quantity=${quantity}`);
+            await axios.post(`${apiUrl}/log/${type}?quantity=${quantity}`);
             setStatus('success');
             onLogSuccess();
         } catch (err) {

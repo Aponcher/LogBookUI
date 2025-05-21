@@ -102,6 +102,8 @@ Highcharts.setOptions({
     background2: '#505053'
 });
 
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
 const TimeSeriesChart = ({ activity, days = 7, chartType = 'line', refreshKey }) => {
     const [options, setOptions] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -110,7 +112,7 @@ const TimeSeriesChart = ({ activity, days = 7, chartType = 'line', refreshKey })
         const fetchChartData = async () => {
             setLoading(true);
             try {
-                const res = await axios.get(`http://logbook-alb-1951812183.us-east-2.elb.amazonaws.com/log/${activity}/timeSeriesData`, {
+                const res = await axios.get(`${apiUrl}/log/${activity}/timeSeriesData`, {
                     params: { days, type: chartType }
                 });
                 setOptions(res.data);

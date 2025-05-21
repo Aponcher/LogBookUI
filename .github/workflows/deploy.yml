@@ -1,0 +1,38 @@
+name: Build & Deploy (with Version Bump)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - run: npm ci
+
+      # Version bump before deploy
+      - name: Bump version and generate changelog
+        run: |
+          npm run release
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git push --follow-tags origin main
+
+      # Build the React app
+      - run: npm run build
+
+      # Deploy (e.g., to GitHub Pages, Netlify CLI, etc.)
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build

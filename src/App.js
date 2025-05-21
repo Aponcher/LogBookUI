@@ -6,10 +6,13 @@ import NavBar from './components/NavBar';
 import './styles.css';
 import Dashboard from "./pages/Dashboard";
 
+// TODO add login flow
+
 function App() {
     return (
         <Router>
             <div className="min-h-screen bg-gray-100">
+                {/*TODO add UserInfo Header component (logout)*/}
                 <Routes>
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/history" element={<History />} />

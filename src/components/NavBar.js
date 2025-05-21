@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import "../layout.css";
 
 export default function NavBar() {
     const navItems = [
@@ -11,15 +12,14 @@ export default function NavBar() {
     return (
         <nav className="bg-gray-800 text-white px-6 py-4 shadow-md">
             <div className="max-w-7xl mx-auto flex justify-center items-center">
-                <div className="flex flex-1 justify-evenly">
+                {/* Adjust the container to take up half the screen width */}
+                <div className="w-1/2 flex justify-content-start">
                     {navItems.map(({ path, label }) => (
                         <NavLink
                             key={path}
                             to={path}
                             className={({ isActive }) =>
-                                isActive
-                                    ? 'border-b-2 border-blue-400 pb-1'
-                                    : 'hover:text-blue-300'
+                                `${isActive ? 'border-b-2 border-blue-400 pb-1' : 'hover:text-blue-300'} px-2 px-2`
                             }
                         >
                             {label}
