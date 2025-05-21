@@ -4,11 +4,13 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { CCard, CCardBody, CCardHeader } from '@coreui/react';
 
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
 export function ActivityChartCard({ type }) {
     const [chartOptions, setChartOptions] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://logbook-alb-1951812183.us-east-2.elb.amazonaws.com/log/${type}/timeSeriesData`)
+        axios.get(`${apiUrl}/log/${type}/timeSeriesData`)
             .then(res => setChartOptions(res.data))
             .catch(err => console.error('Failed to load chart options', err));
     }, [chartOptions]);

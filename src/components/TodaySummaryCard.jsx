@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { CCard, CCardBody, CCardHeader, CSpinner } from '@coreui/react';
 import axios from 'axios';
 
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
 export default function TodaySummaryCard({ activity, refreshKey }) {
     const [goal, setGoal] = useState(null);
     const [actual, setActual] = useState(null);
@@ -11,7 +13,7 @@ export default function TodaySummaryCard({ activity, refreshKey }) {
         const fetchSummary = async () => {
             setLoading(true);
             try {
-                const response = await axios.get('http://logbook-alb-1951812183.us-east-2.elb.amazonaws.com/user/today/summary');
+                const response = await axios.get(`${apiUrl}/user/today/summary`);
                 setGoal(response.data.goals[activity] ?? 0);
                 setActual(response.data.actual[activity] ?? 0);
             } catch (error) {
