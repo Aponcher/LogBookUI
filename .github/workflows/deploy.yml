@@ -22,9 +22,9 @@ jobs:
       # Version bump before deploy
       - name: Bump version and generate changelog
         run: |
-          npm run release
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
+          npm run release
           git push --follow-tags origin main
 
       # Build the React app
