@@ -12,17 +12,14 @@ import {
     CTableRow
 } from '@coreui/react';
 
-const activityOptions = ['pushups', 'situps', 'squats'];
-
 export default function EntryTab({activity, refreshKey}) {
-    const [activityType, setActivityType] = useState(activity);
     const [entries, setEntries] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const fetchEntries = async () => {
         setLoading(true);
         try {
-            const response = await fetch(`http://logbook-alb-1951812183.us-east-2.elb.amazonaws.com/log/list/${activityType}`);
+            const response = await fetch(`http://logbook-alb-1951812183.us-east-2.elb.amazonaws.com/log/list/${activity}`);
             const data = await response.json();
             setEntries(data);
         } catch (err) {
@@ -35,24 +32,13 @@ export default function EntryTab({activity, refreshKey}) {
 
     useEffect(() => {
         fetchEntries();
-    }, [activityType, refreshKey]);
+    }, [refreshKey]);
 
     return (
         <CCard className="mt-4">
             <CCardHeader>
                 <div className="d-flex justify-content-between align-items-center">
                     <span>Activity Log</span>
-                    {/*<CFormSelect*/}
-                    {/*    style={{ width: '150px' }}*/}
-                    {/*    value={activityType}*/}
-                    {/*    onChange={(e) => setActivityType(e.target.value)}*/}
-                    {/*>*/}
-                    {/*    {activityOptions.map((opt) => (*/}
-                    {/*        <option key={opt} value={opt}>*/}
-                    {/*            {opt.toUpperCase()}*/}
-                    {/*        </option>*/}
-                    {/*    ))}*/}
-                    {/*</CFormSelect>*/}
                 </div>
             </CCardHeader>
 

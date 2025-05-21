@@ -6,8 +6,7 @@ const activityOptions = [
   { type: 'squats', label: 'Squats', unit: 'reps' },
 ];
 
-// src/components/ExerciseEntryWidget.jsx
-export default function ExerciseEntryWidget() {
+export function ExerciseEntryWidget() {
     const [activity, setActivity] = useState('pushups');
     const [count, setCount] = useState(10);
     const [unit, setUnit] = useState('reps');

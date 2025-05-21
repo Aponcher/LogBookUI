@@ -4,7 +4,7 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { CCard, CCardBody, CCardHeader } from '@coreui/react';
 
-export default function ActivityChartCard({ type }) {
+export function ActivityChartCard({ type }) {
     const [chartOptions, setChartOptions] = useState(null);
 
     useEffect(() => {
