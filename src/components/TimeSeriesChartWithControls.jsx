@@ -10,10 +10,10 @@ const TimeSeriesChartWithControls = ({ activity, refreshKey }) => {
         <CCard>
             <CCardHeader>
                 <CRow>
-                    <CCol md={6}>
+                    <CCol md={4}>
                         <strong>{activity.toUpperCase()} Progress</strong>
                     </CCol>
-                    <CCol md={3}>
+                    <CCol md={4}>
                         <CFormSelect
                             size="sm"
                             value={days}
@@ -24,7 +24,7 @@ const TimeSeriesChartWithControls = ({ activity, refreshKey }) => {
                             <option value={90}>Last 90 Days</option>
                         </CFormSelect>
                     </CCol>
-                    <CCol md={3}>
+                    <CCol md={4}>
                         <CFormSelect
                             size="sm"
                             value={chartType}

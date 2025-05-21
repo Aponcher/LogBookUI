@@ -29,3 +29,29 @@ body {
 .button:hover {
   background-color: #0056b3;
 }
+
+.card {
+  background-color: #1e1e1e; /* dark slate */
+  color: #f1f1f1;
+  border: none;
+}
+
+.card-header,
+.card-body {
+  background-color: inherit;
+  color: inherit;
+}
+
+.form-select,
+.form-control,
+.btn {
+  background-color: #2c2c2c;
+  color: #fff;
+  border-color: #444;
+}
+
+.form-select:focus,
+.form-control:focus {
+  border-color: #666;
+  box-shadow: none;
+}

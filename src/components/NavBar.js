@@ -10,9 +10,8 @@ export default function NavBar() {
 
     return (
         <nav className="bg-gray-800 text-white px-6 py-4 shadow-md">
-            <div className="max-w-7xl mx-auto flex justify-between items-center">
-                <h1 className="text-xl font-bold tracking-wide">Personal Log</h1>
-                <div className="flex space-x-6">
+            <div className="max-w-7xl mx-auto flex justify-center items-center">
+                <div className="flex flex-1 justify-evenly">
                     {navItems.map(({ path, label }) => (
                         <NavLink
                             key={path}

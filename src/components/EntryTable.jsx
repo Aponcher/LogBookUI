@@ -15,7 +15,7 @@ import {
 
 const activityOptions = ['pushups', 'situps', 'squats'];
 
-export default function EntryTab({activity}) {
+export default function EntryTab({activity, refreshKey}) {
     const [activityType, setActivityType] = useState(activity);
     const [entries, setEntries] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -36,24 +36,24 @@ export default function EntryTab({activity}) {
 
     useEffect(() => {
         fetchEntries();
-    }, [activityType]);
+    }, [activityType, refreshKey]);
 
     return (
         <CCard className="mt-4">
             <CCardHeader>
                 <div className="d-flex justify-content-between align-items-center">
                     <span>Activity Log</span>
-                    <CFormSelect
-                        style={{ width: '150px' }}
-                        value={activityType}
-                        onChange={(e) => setActivityType(e.target.value)}
-                    >
-                        {activityOptions.map((opt) => (
-                            <option key={opt} value={opt}>
-                                {opt.toUpperCase()}
-                            </option>
-                        ))}
-                    </CFormSelect>
+                    {/*<CFormSelect*/}
+                    {/*    style={{ width: '150px' }}*/}
+                    {/*    value={activityType}*/}
+                    {/*    onChange={(e) => setActivityType(e.target.value)}*/}
+                    {/*>*/}
+                    {/*    {activityOptions.map((opt) => (*/}
+                    {/*        <option key={opt} value={opt}>*/}
+                    {/*            {opt.toUpperCase()}*/}
+                    {/*        </option>*/}
+                    {/*    ))}*/}
+                    {/*</CFormSelect>*/}
                 </div>
             </CCardHeader>
 

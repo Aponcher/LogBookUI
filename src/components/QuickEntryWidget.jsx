@@ -12,8 +12,8 @@ import {
 } from '@coreui/react';
 import axios from 'axios';
 
-const QuickEntryWidget = ({ onLogSuccess }) => {
-    const [type, setType] = useState('pushups');
+const QuickEntryWidget = ({ activity, onLogSuccess }) => {
+    const [type, setType] = useState(activity);
     const [quantity, setQuantity] = useState(10);
     const [status, setStatus] = useState(null); // 'success' or 'error'
 
