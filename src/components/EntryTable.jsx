@@ -12,27 +12,29 @@ import {
     CTableRow
 } from '@coreui/react';
 
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
 export default function EntryTab({activity, refreshKey}) {
     const [entries, setEntries] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const fetchEntries = async () => {
-        setLoading(true);
-        try {
-            const response = await fetch(`http://logbook-alb-1951812183.us-east-2.elb.amazonaws.com/log/list/${activity}`);
-            const data = await response.json();
-            setEntries(data);
-        } catch (err) {
-            console.error('Failed to fetch log entries:', err);
-            setEntries([]);
-        } finally {
-            setLoading(false);
-        }
-    };
 
     useEffect(() => {
+        const fetchEntries = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch(`${apiUrl}/log/list/${activity}`);
+                const data = await response.json();
+                setEntries(data);
+            } catch (err) {
+                console.error('Failed to fetch log entries:', err);
+                setEntries([]);
+            } finally {
+                setLoading(false);
+            }
+        };
         fetchEntries();
-    }, [refreshKey]);
+    }, [activity, refreshKey]);
 
     return (
         <CCard className="mt-4">
