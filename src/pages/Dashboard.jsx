@@ -4,6 +4,7 @@ import QuickEntryWidget from '../components/QuickEntryWidget';
 import TodaySummaryCard from '../components/TodaySummaryCard';
 import EntryTable from '../components/EntryTable';
 import TimeSeriesChartWithControls from "../components/TimeSeriesChartWithControls";
+import '../styles.css';
 
 export default function Dashboard() {
     const [refreshKey, setRefreshKey] = useState(0);

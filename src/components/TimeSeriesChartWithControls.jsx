@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CCard, CCardBody, CCardHeader, CFormSelect, CRow, CCol } from '@coreui/react';
 import TimeSeriesChart from './TimeSeriesChart';
+import '../styles.css';
 
 const TimeSeriesChartWithControls = ({ activity, refreshKey }) => {
     const [days, setDays] = useState(7);

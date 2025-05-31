@@ -3,10 +3,13 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import axios from 'axios';
 import { CSpinner } from '@coreui/react';
+import '../styles.css';
 
 // Apply dark theme manually
 Highcharts.setOptions({
     chart: {
+        spacingTop: 5,
+        spacingRight: 5,
         backgroundColor: '#2a2a2b',
         style: {
             fontFamily: 'Arial, sans-serif'

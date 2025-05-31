@@ -11,6 +11,8 @@ import {
     CTableHeaderCell,
     CTableRow
 } from '@coreui/react';
+import '../styles.css';
+import axios from "axios";
 
 const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
@@ -23,9 +25,8 @@ export default function EntryTab({activity, refreshKey}) {
         const fetchEntries = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`${apiUrl}/log/list/${activity}`);
-                const data = await response.json();
-                setEntries(data);
+                const response = await axios.get(`${apiUrl}/log/list/${activity}`);
+                setEntries(response.data);
             } catch (err) {
                 console.error('Failed to fetch log entries:', err);
                 setEntries([]);
@@ -37,7 +38,7 @@ export default function EntryTab({activity, refreshKey}) {
     }, [activity, refreshKey]);
 
     return (
-        <CCard className="mt-4">
+        <CCard>
             <CCardHeader>
                 <div className="d-flex justify-content-between align-items-center">
                     <span>Activity Log</span>
@@ -48,24 +49,26 @@ export default function EntryTab({activity, refreshKey}) {
                 {loading ? (
                     <CSpinner />
                 ) : (
-                    <CTable color="dark" striped hover responsive>
-                        <CTableHead>
-                            <CTableRow>
-                                <CTableHeaderCell scope="col">Timestamp</CTableHeaderCell>
-                                <CTableHeaderCell scope="col">Quantity</CTableHeaderCell>
-                            </CTableRow>
-                        </CTableHead>
-                        <CTableBody>
-                            {entries.map((entry, idx) => (
-                                <CTableRow key={idx}>
-                                    <CTableDataCell>
-                                        {new Date(entry.timestamp).toLocaleString()}
-                                    </CTableDataCell>
-                                    <CTableDataCell>{entry.quantity}</CTableDataCell>
+                    <div className="scroll-table">
+                        <CTable color="dark" striped hover responsive>
+                            <CTableHead>
+                                <CTableRow>
+                                    <CTableHeaderCell scope="col">Timestamp</CTableHeaderCell>
+                                    <CTableHeaderCell scope="col">Quantity</CTableHeaderCell>
                                 </CTableRow>
-                            ))}
-                        </CTableBody>
-                    </CTable>
+                            </CTableHead>
+                            <CTableBody>
+                                {entries.map((entry, idx) => (
+                                    <CTableRow key={idx}>
+                                        <CTableDataCell>
+                                            {new Date(entry.timestamp).toLocaleString()}
+                                        </CTableDataCell>
+                                        <CTableDataCell>{entry.quantity}</CTableDataCell>
+                                    </CTableRow>
+                                ))}
+                            </CTableBody>
+                        </CTable>
+                    </div>
                 )}
             </CCardBody>
         </CCard>
