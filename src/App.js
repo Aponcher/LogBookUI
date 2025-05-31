@@ -9,9 +9,7 @@ import RegisterPage from "./pages/RegistrationPage";
 import DeveloperResume from "./pages/DeveloperResume";
 
 const ProtectedRoute = ({ children }) => {
-    const { isAuthenticated, token } = useAuth();
-    console.log('isAuthenticated:', isAuthenticated);
-    console.log('token:', token);
+    const { isAuthenticated } = useAuth();
     return isAuthenticated ? children : <Navigate to="/login" />;
 };
 

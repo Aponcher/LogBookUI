@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }) => {
         delete axios.defaults.headers.common['Authorization'];
     };
 
+    //TODO const isAuthenticated = !!token; round trip to API ?
     return (
         <AuthContext.Provider value={{
             user,
