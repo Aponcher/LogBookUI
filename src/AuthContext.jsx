@@ -8,10 +8,17 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(null);
 
     useEffect(() => {
-        const savedUser = JSON.parse(localStorage.getItem('user'));
+        const savedUser = localStorage.getItem('user');
         const savedToken = localStorage.getItem('token');
-        if (savedUser) setUser(savedUser);
-        if (savedToken) setToken(savedToken);
+
+        if (savedUser) {
+            setUser(JSON.parse(savedUser));
+        }
+
+        if (savedToken) {
+            setToken(savedToken);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`;
+        }
     }, []);
 
     const login = ({ userData, token }) => {

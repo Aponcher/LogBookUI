@@ -5,7 +5,7 @@ import '../styles.css';
 
 const TimeSeriesChartWithControls = ({ activity, refreshKey }) => {
     const [days, setDays] = useState(7);
-    const [chartType, setChartType] = useState('line');
+    const [chartType, setChartType] = useState('scatter');
 
     return (
         <CCard>

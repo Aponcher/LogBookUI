@@ -107,7 +107,7 @@ Highcharts.setOptions({
 
 const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
-const TimeSeriesChart = ({ activity, days = 7, chartType = 'line', refreshKey }) => {
+const TimeSeriesChart = ({ activity, days = 7, chartType = 'scatter', refreshKey }) => {
     const [options, setOptions] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -116,7 +116,7 @@ const TimeSeriesChart = ({ activity, days = 7, chartType = 'line', refreshKey })
             setLoading(true);
             try {
                 const res = await axios.get(`${apiUrl}/log/${activity}/timeSeriesData`, {
-                    params: { days, type: chartType }
+                    params: { days, chartType: chartType }
                 });
                 setOptions(res.data);
             } catch (err) {

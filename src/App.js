@@ -8,10 +8,10 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegistrationPage";
 import DeveloperResume from "./pages/DeveloperResume";
 
-// TODO add login flow
-
 const ProtectedRoute = ({ children }) => {
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, token } = useAuth();
+    console.log('isAuthenticated:', isAuthenticated);
+    console.log('token:', token);
     return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
