@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import "../layout.css";
+import '../styles.css';
 
 export default function NavBar() {
     const navItems = [
         { path: '/', label: 'Dashboard' },
+        { path: '/Developer', label: 'Developer' },
         { path: '/history', label: 'History' },
         { path: '/stats', label: 'Stats' },
         { path: '/settings', label: 'Settings' },

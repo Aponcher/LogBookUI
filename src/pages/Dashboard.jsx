@@ -4,9 +4,13 @@ import QuickEntryWidget from '../components/QuickEntryWidget';
 import TodaySummaryCard from '../components/TodaySummaryCard';
 import EntryTable from '../components/EntryTable';
 import TimeSeriesChartWithControls from "../components/TimeSeriesChartWithControls";
+import '../styles.css';
+import {useAuth} from "../AuthContext";
+import {Navigate} from "react-router-dom";
 
 export default function Dashboard() {
     const [refreshKey, setRefreshKey] = useState(0);
+    const { isAuthenticated } = useAuth();
 
     const handleRefresh = () => {
         // simple inc to force refresh
@@ -15,10 +19,15 @@ export default function Dashboard() {
 
     const readyActivities = ['pushups', 'situps'];
 
+    if (!isAuthenticated) {
+        console.log('No token, redirecting to login page');
+        return <Navigate to="/login"/>
+    }
+
     return (
-        <CContainer fluid className="mt-4">
+        <CContainer fluid className="mt-1">
             {readyActivities.map((activity) => (
-                <CRow>
+                <CRow key={activity}>
                     <CCol md={3}>
                         <TodaySummaryCard activity={activity} refreshKey={refreshKey}  />
                         <QuickEntryWidget activity={activity} onLogSuccess={handleRefresh} />
@@ -31,14 +40,6 @@ export default function Dashboard() {
                     </CCol>
                 </CRow>
             ))}
-            <CRow>
-                <CCol md={12}>
-
-                </CCol>
-            </CRow>
-            <CRow>
-                {/* Future widgets can go here */}
-            </CRow>
         </CContainer>
     );
 }

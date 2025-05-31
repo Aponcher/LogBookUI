@@ -55,3 +55,45 @@ body {
   border-color: #666;
   box-shadow: none;
 }
+
+.scroll-table {
+  max-height: 450px;
+  /*max-height: 500px;*/
+  overflow-y: auto;
+}
+
+.row {
+  max-height: 600px;
+}
+
+/* Dark theme for Accordion */
+.accordion {
+  background-color: #333;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+.accordion-header {
+  background-color: #333;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.accordion-button {
+  color: #ffffff;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #3a3a4f;
+  color: #ffffff;
+}
+
+.accordion-body {
+  background-color: #333333;
+  color: #dcdcdc;
+  max-height: 300px;
+  overflow-y: auto;
+  border-top: 1px solid #444;
+}

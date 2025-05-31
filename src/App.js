@@ -1,28 +1,42 @@
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import History from './pages/History';
-import Stats from './pages/Stats';
-import Settings from './pages/Settings';
+import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom';
 import NavBar from './components/NavBar';
 import './styles.css';
 import Dashboard from "./pages/Dashboard";
+import {AuthProvider, useAuth} from "./AuthContext";
+import Header from "./components/Header";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegistrationPage";
+import DeveloperResume from "./pages/DeveloperResume";
 
-// TODO add login flow
+const ProtectedRoute = ({ children }) => {
+    const { isAuthenticated } = useAuth();
+    return isAuthenticated ? children : <Navigate to="/login" />;
+};
 
-function App() {
-    return (
+const AppRoutes = () => (
+    <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/developer" element={<DeveloperResume />} />
+        <Route
+            path="/"
+            element={
+                <ProtectedRoute>
+                    <Dashboard />
+                </ProtectedRoute>
+            }
+        />
+    </Routes>
+);
+
+const App = () => (
+    <AuthProvider>
         <Router>
-            <div className="min-h-screen bg-gray-100">
-                {/*TODO add UserInfo Header component (logout)*/}
-                <Routes>
-                    <Route path="/" element={<Dashboard />} />
-                    <Route path="/history" element={<History />} />
-                    <Route path="/stats" element={<Stats />} />
-                    <Route path="/settings" element={<Settings />} />
-                </Routes>
-                <NavBar />
-            </div>
+            <Header />
+            <AppRoutes />
+            <NavBar />
         </Router>
-    );
-}
+    </AuthProvider>
+);
 
 export default App;
