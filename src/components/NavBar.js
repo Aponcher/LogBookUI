@@ -6,9 +6,12 @@ export default function NavBar() {
     const navItems = [
         { path: '/', label: 'Dashboard' },
         { path: '/Developer', label: 'Developer' },
-        { path: '/history', label: 'History' },
-        { path: '/stats', label: 'Stats' },
-        { path: '/settings', label: 'Settings' },
+        // TODO - uncomment when ready
+        // { path: '/history', label: 'History' },
+        // TODO - uncomment when ready
+        // { path: '/stats', label: 'Stats' },
+        // TODO - uncomment when ready
+        // { path: '/settings', label: 'Settings' },
     ];
 
     return (
