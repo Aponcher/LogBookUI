@@ -73,7 +73,6 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated: !!token
     }), [user, token]);
 
-    //TODO const isAuthenticated = !!token; round trip to API ?
     return (
         <AuthContext.Provider value={value}>
             {children}

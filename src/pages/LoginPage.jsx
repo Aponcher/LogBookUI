@@ -9,7 +9,7 @@ const apiUrl = process.env.REACT_APP_API_BASE_URL;
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const { user, login, refreshUser } = useAuth();
+    const { login, refreshUser } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {

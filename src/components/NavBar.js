@@ -18,7 +18,7 @@ export default function NavBar() {
         <nav className="bg-gray-800 px-2 py-2 shadow-md">
             <div className="max-w-7xl mx-auto flex justify-center items-center">
                 {/* Adjust the container to take up half the screen width */}
-                <div className="w-1/2 flex justify-content-start">
+                <div className="w-1/2 flex justify-content-end">
                     {navItems.map(({ path, label }) => (
                         <NavLink
                             key={path}
