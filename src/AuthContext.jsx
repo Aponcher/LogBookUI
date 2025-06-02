@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import {createContext, useContext, useState, useEffect, useMemo} from 'react';
 import axios from "axios";
 
 const AuthContext = createContext();
@@ -64,16 +64,18 @@ export const AuthProvider = ({ children }) => {
         delete axios.defaults.headers.common['Authorization'];
     };
 
+    const value = useMemo(() => ({
+        user,
+        token,
+        login,
+        logout,
+        refreshUser,
+        isAuthenticated: !!token
+    }), [user, token]);
+
     //TODO const isAuthenticated = !!token; round trip to API ?
     return (
-        <AuthContext.Provider value={{
-            user,
-            token,
-            login,
-            logout,
-            refreshUser,
-            isAuthenticated: !!token
-        }}>
+        <AuthContext.Provider value={value}>
             {children}
         </AuthContext.Provider>
     );

@@ -1,8 +1,13 @@
 import { CNavbar, CContainer, CNavbarBrand, CDropdown, CDropdownToggle, CDropdownMenu, CDropdownItem } from '@coreui/react';
 import {useAuth} from "../AuthContext";
+import {useEffect} from "react";
 
 const Header = () => {
     const { user, logout } = useAuth();
+
+    useEffect(() => {
+        console.log("Header user changed", user);
+    }, [user]);
 
     return (
         <CNavbar colorScheme="dark" className="bg-dark">

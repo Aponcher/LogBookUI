@@ -41,7 +41,7 @@ const LoginPage = () => {
             if (response.status === 200) {
                 login({
                     userData: {
-                        id: username
+                        id: response.data.userId
                     },
                     token: response.data.token
                 });
