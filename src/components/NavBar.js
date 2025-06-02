@@ -12,7 +12,7 @@ export default function NavBar() {
     ];
 
     return (
-        <nav className="bg-gray-800 text-white px-6 py-4 shadow-md">
+        <nav className="bg-gray-800 px-2 py-2 shadow-md">
             <div className="max-w-7xl mx-auto flex justify-center items-center">
                 {/* Adjust the container to take up half the screen width */}
                 <div className="w-1/2 flex justify-content-start">
