@@ -71,6 +71,8 @@ export const AuthProvider = ({ children }) => {
         logout,
         refreshUser,
         isAuthenticated: !!token
+        // We intentionally omit `refreshUser` to avoid re-triggering on each render
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }), [user, token]);
 
     return (

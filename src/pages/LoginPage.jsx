@@ -27,6 +27,8 @@ const LoginPage = () => {
         };
 
         checkExistingLogin();
+        // We intentionally omit `refreshUser` and `navigate` to avoid re-triggering on each render
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleSubmit = async (e) => {
