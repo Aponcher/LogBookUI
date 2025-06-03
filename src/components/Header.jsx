@@ -1,5 +1,15 @@
-import { CNavbar, CContainer, CNavbarBrand, CDropdown, CDropdownToggle, CDropdownMenu, CDropdownItem } from '@coreui/react';
+import {
+    CContainer,
+    CDropdown,
+    CDropdownItem,
+    CDropdownMenu,
+    CDropdownToggle,
+    CNavbar,
+    CNavbarBrand,
+    CNavbarText
+} from '@coreui/react';
 import {useAuth} from "../AuthContext";
+import StartDateDisplay from "./StarDateDisplay";
 
 const Header = () => {
     const { user, logout } = useAuth();
@@ -7,16 +17,21 @@ const Header = () => {
     return (
         <CNavbar colorScheme="dark" className="bg-dark">
             <CContainer fluid>
-                <CNavbarBrand href="/">LogBook</CNavbarBrand>
+                <CNavbarBrand className="text-white" href="/">LogBook</CNavbarBrand>
+                <CNavbarText className="text-white">
+                    <StartDateDisplay />
+                </CNavbarText>
                 {user && (
-                    <CDropdown variant="nav-item">
-                        <CDropdownToggle color="secondary">
-                            {user.username || 'User'}
-                        </CDropdownToggle>
-                        <CDropdownMenu>
-                            <CDropdownItem onClick={logout}>Logout</CDropdownItem>
-                        </CDropdownMenu>
-                    </CDropdown>
+                    <div className="d-flex align-items-center">
+                        <CDropdown variant="nav-item">
+                            <CDropdownToggle color="secondary">
+                                {user.id || 'User'}
+                            </CDropdownToggle>
+                            <CDropdownMenu>
+                                <CDropdownItem onClick={logout}>Logout</CDropdownItem>
+                            </CDropdownMenu>
+                        </CDropdown>
+                    </div>
                 )}
             </CContainer>
         </CNavbar>

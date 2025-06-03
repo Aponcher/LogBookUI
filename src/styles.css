@@ -97,3 +97,7 @@ body {
   overflow-y: auto;
   border-top: 1px solid #444;
 }
+
+.nav-item {
+  list-style: none !important;
+}

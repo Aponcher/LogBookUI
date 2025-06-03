@@ -10,6 +10,7 @@ import DeveloperResume from "./pages/DeveloperResume";
 
 const ProtectedRoute = ({ children }) => {
     const { isAuthenticated } = useAuth();
+    //console.log('Hitting ProtectedRoute isAuthenticated: ' + isAuthenticated);
     return isAuthenticated ? children : <Navigate to="/login" />;
 };
 

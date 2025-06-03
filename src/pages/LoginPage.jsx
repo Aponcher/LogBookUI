@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {CButton, CCard, CCardBody, CCol, CForm, CFormInput} from '@coreui/react';
 import {useAuth} from "../AuthContext";
@@ -9,8 +9,27 @@ const apiUrl = process.env.REACT_APP_API_BASE_URL;
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const { login } = useAuth();
+    const { login, refreshUser } = useAuth();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const checkExistingLogin = async () => {
+            try {
+                const user = await refreshUser();
+                if (user) {
+                    console.log('Already Logged in as: ' + user);
+                    navigate('/');
+                }
+            } catch (e) {
+                // Ignore; let them log in
+                console.log('Failed check of existing login:', e);
+            }
+        };
+
+        checkExistingLogin();
+        // We intentionally omit `refreshUser` and `navigate` to avoid re-triggering on each render
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +43,7 @@ const LoginPage = () => {
             if (response.status === 200) {
                 login({
                     userData: {
-                        id: username
+                        id: response.data.userId
                     },
                     token: response.data.token
                 });

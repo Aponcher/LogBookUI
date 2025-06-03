@@ -1,7 +1,9 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import {createContext, useContext, useState, useEffect, useMemo} from 'react';
 import axios from "axios";
 
 const AuthContext = createContext();
+
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -21,6 +23,31 @@ export const AuthProvider = ({ children }) => {
         }
     }, []);
 
+    const refreshUser = async (): Promise<any> => {
+        try {
+            const token = localStorage.getItem('token');
+            const user = localStorage.getItem('user');
+            console.log('Checking existing token: ' + user);
+            if (!token) {
+                // noinspection ExceptionCaughtLocallyJS
+                throw new Error('No token'); // goes to catch block and therefore clears local storage and such
+            }
+
+            const response = await axios.get(`${apiUrl}/user/whoAmI`);
+            if (response.status === 200) {
+                console.log('Successfully refreshed user: ' + response.data);
+                login({userData: {id: response.data}, token: token});
+                return response.data;
+            } else {
+                console.log('Failed to refresh user: ' + response);
+                logout();
+            }
+        } catch (e) {
+            logout(); // Clear Token and refresh state
+        }
+        return null;
+    }
+
     const login = ({ userData, token }) => {
         setUser(userData);
         setToken(token);
@@ -37,15 +64,19 @@ export const AuthProvider = ({ children }) => {
         delete axios.defaults.headers.common['Authorization'];
     };
 
-    //TODO const isAuthenticated = !!token; round trip to API ?
+    const value = useMemo(() => ({
+        user,
+        token,
+        login,
+        logout,
+        refreshUser,
+        isAuthenticated: !!token
+        // We intentionally omit `refreshUser` to avoid re-triggering on each render
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }), [user, token]);
+
     return (
-        <AuthContext.Provider value={{
-            user,
-            token,
-            login,
-            logout,
-            isAuthenticated: !!token
-        }}>
+        <AuthContext.Provider value={value}>
             {children}
         </AuthContext.Provider>
     );

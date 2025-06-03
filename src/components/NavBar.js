@@ -6,16 +6,19 @@ export default function NavBar() {
     const navItems = [
         { path: '/', label: 'Dashboard' },
         { path: '/Developer', label: 'Developer' },
-        { path: '/history', label: 'History' },
-        { path: '/stats', label: 'Stats' },
-        { path: '/settings', label: 'Settings' },
+        // TODO - uncomment when ready
+        // { path: '/history', label: 'History' },
+        // TODO - uncomment when ready
+        // { path: '/stats', label: 'Stats' },
+        // TODO - uncomment when ready
+        // { path: '/settings', label: 'Settings' },
     ];
 
     return (
-        <nav className="bg-gray-800 text-white px-6 py-4 shadow-md">
+        <nav className="bg-gray-800 px-2 py-2 shadow-md">
             <div className="max-w-7xl mx-auto flex justify-center items-center">
                 {/* Adjust the container to take up half the screen width */}
-                <div className="w-1/2 flex justify-content-start">
+                <div className="w-1/2 flex justify-content-end">
                     {navItems.map(({ path, label }) => (
                         <NavLink
                             key={path}
