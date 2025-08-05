@@ -81,7 +81,6 @@ export default function DeveloperResume() {
                     </CAccordionItem>
                 </CAccordion>
             </Section>
-
             <Section key="skills" title="Skills">
                 <CAccordion alwaysOpen>
                     <CAccordionItem>
