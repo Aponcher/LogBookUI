@@ -12,8 +12,9 @@ export default function DeveloperResume() {
                 <CCol>
                     <h1 className="text-center">Adam Levi Poncher</h1>
                     <p className="text-center">
-                        Email: aponcher@mac.com • Phone: (847) 912-5617 • Location: Deerfield, IL<br />
-                        GitHub: github.com/Aponcher • LinkedIn: linkedin.com/in/adam-poncher-3a212a50/
+                        Email: aponcher@mac.com • Phone: (847) 912-5617 • Location: Deerfield, IL
+                        <br />GitHub: github.com/Aponcher
+                        <br />LinkedIn: linkedin.com/in/aponcher
                     </p>
                 </CCol>
             </CRow>
@@ -74,14 +75,12 @@ export default function DeveloperResume() {
                             <div>2013 – 2017</div>
                             <ul className="mt-2">
                                 <li><strong>B.S. in Computer Science</strong></li>
-                                <li><strong>B.S. in Mathematics</strong></li>
                                 <li><strong>Business Foundations Certificate</strong></li>
                             </ul>
                         </CAccordionBody>
                     </CAccordionItem>
                 </CAccordion>
             </Section>
-
             <Section key="skills" title="Skills">
                 <CAccordion alwaysOpen>
                     <CAccordionItem>
